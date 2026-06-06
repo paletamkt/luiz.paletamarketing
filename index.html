@@ -18,13 +18,10 @@
   --accent: #FF4D2E;
   --accent2: #FF7A5C;
   --white: #FFFFFF;
+  --green: #22C55E;
 }
 
-html, body {
-  min-height: 100%;
-  background: var(--bg);
-  overscroll-behavior-y: none;
-}
+html, body { min-height: 100%; background: var(--bg); overscroll-behavior-y: none; }
 
 body {
   font-family: 'Manrope', sans-serif;
@@ -34,10 +31,8 @@ body {
   margin: 0 auto;
   min-height: 100vh;
   overflow-x: hidden;
-  position: relative;
 }
 
-/* NOISE */
 body::before {
   content: '';
   position: fixed;
@@ -47,304 +42,368 @@ body::before {
   z-index: 9998;
 }
 
-/* GLOW BG */
-.bg-glow {
-  position: fixed;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,77,46,0.07) 0%, transparent 70%);
-  top: -100px;
-  right: -150px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* HEADER */
-.header {
-  padding: 20px 24px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  z-index: 10;
-  opacity: 0;
-  animation: fadeDown 0.5s ease 0.1s forwards;
-}
-.header-handle {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  color: var(--muted);
-}
-.header-badge {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--accent);
-  border: 1px solid rgba(255,77,46,0.3);
-  padding: 4px 10px;
-  letter-spacing: 0.08em;
-}
-
-/* HERO */
+/* ── HERO ── */
 .hero {
   padding: 40px 24px 0;
   position: relative;
   z-index: 10;
 }
 
-.hero-name {
+.hero-kicker {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.1s forwards;
+}
+.hero-kicker::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.hero-headline {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(56px, 16vw, 72px);
+  font-size: clamp(26px, 7.5vw, 34px);
   font-weight: 800;
-  line-height: 0.88;
-  letter-spacing: -0.03em;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   color: var(--white);
-  margin-bottom: 4px;
+  margin-bottom: 20px;
   opacity: 0;
   animation: fadeUp 0.6s ease 0.2s forwards;
 }
-.hero-name .line2 {
-  color: var(--accent);
-  display: block;
-}
+.hero-headline span { color: var(--accent); }
 
-.hero-role {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--muted);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-top: 16px;
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.35s forwards;
-}
-.hero-role::before {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 1px;
-  background: var(--accent);
-}
-
-.hero-statement {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(18px, 5vw, 22px);
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--text);
-  margin-bottom: 16px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease 0.45s forwards;
-  letter-spacing: -0.01em;
-}
-.hero-statement span { color: var(--accent); }
-
-.hero-desc {
-  font-size: 13px;
+.hero-sub {
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.7;
   color: var(--muted);
-  margin-bottom: 36px;
-  max-width: 340px;
+  margin-bottom: 28px;
   opacity: 0;
-  animation: fadeUp 0.5s ease 0.55s forwards;
+  animation: fadeUp 0.5s ease 0.3s forwards;
 }
+.hero-sub strong { color: var(--text); font-weight: 600; }
 
-/* TAGS */
-.tags {
+/* CTA HERO */
+.cta-hero {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 48px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  background: var(--accent);
+  text-decoration: none;
+  margin-bottom: 12px;
   opacity: 0;
-  animation: fadeUp 0.5s ease 0.65s forwards;
+  animation: fadeUp 0.5s ease 0.4s forwards;
+  transition: background 0.25s;
+  position: relative;
+  overflow: hidden;
 }
-.tag {
+.cta-hero:hover { background: var(--accent2); }
+.cta-hero-left { display: flex; flex-direction: column; gap: 2px; }
+.cta-hero-tag {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
+  font-size: 9px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  padding: 5px 11px;
-  transition: all 0.25s;
-  background: var(--surface);
+  color: rgba(255,255,255,0.6);
 }
-.tag:hover {
-  color: var(--accent);
-  border-color: rgba(255,77,46,0.3);
-  background: rgba(255,77,46,0.05);
-}
-
-/* DIVIDER */
-.divider {
-  width: 100%;
-  height: 1px;
-  background: var(--border);
-  margin: 0 24px;
-  width: calc(100% - 48px);
-  opacity: 0;
-  animation: fadeIn 0.5s ease 0.7s forwards;
-}
-
-/* NUMBERS */
-.numbers {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--border);
-  margin: 0 24px;
-  border: 1px solid var(--border);
-  opacity: 0;
-  transform: translateY(16px);
-  transition: all 0.6s ease;
-}
-.numbers.vis { opacity: 1; transform: translateY(0); }
-.num-item {
-  background: var(--bg);
-  padding: 20px 18px;
-}
-.num-val {
+.cta-hero-name {
   font-family: 'Syne', sans-serif;
-  font-size: 40px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 700;
   color: var(--white);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  display: block;
-}
-.num-val span { color: var(--accent); }
-.num-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-top: 4px;
-  display: block;
-}
-
-/* QUOTE */
-.quote-block {
-  margin: 0 24px;
-  padding: 24px 20px;
-  background: var(--surface);
-  border-left: 3px solid var(--accent);
-  opacity: 0;
-  transform: translateY(16px);
-  transition: all 0.6s ease;
-}
-.quote-block.vis { opacity: 1; transform: translateY(0); }
-.quote-text {
-  font-family: 'Syne', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--text);
   letter-spacing: -0.01em;
 }
-.quote-text strong { color: var(--accent); font-weight: 700; }
+.cta-arrow {
+  font-size: 18px;
+  color: var(--white);
+  transition: transform 0.25s;
+}
+.cta-hero:hover .cta-arrow { transform: translateX(4px); }
 
-/* SECTION LABEL */
+.cta-micro {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.4s ease 0.5s forwards;
+}
+.cta-micro span { color: var(--green); }
+
+/* ── DORES ── */
+.dores {
+  padding: 0 24px;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease;
+}
+.dores.vis { opacity: 1; transform: translateY(0); }
+
+.dores-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.dor-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.dor-item:last-child { border-bottom: none; }
+.dor-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--accent);
+  font-family: 'DM Mono', monospace;
+}
+.dor-text {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text);
+  font-weight: 400;
+}
+.dor-text strong { color: var(--accent); font-weight: 600; }
+
+/* ── AUTORIDADE ── */
+.autoridade {
+  margin: 0 24px 40px;
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  padding: 20px 18px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease;
+}
+.autoridade.vis { opacity: 1; transform: translateY(0); }
+
+.aut-who {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.aut-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+.aut-stats {
+  display: flex;
+  gap: 20px;
+}
+.aut-stat { display: flex; flex-direction: column; gap: 2px; }
+.aut-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.aut-val span { color: var(--accent); }
+.aut-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── PROVAS ── */
+.provas {
+  padding: 0 24px;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease;
+}
+.provas.vis { opacity: 1; transform: translateY(0); }
+
 .sec-label {
   font-family: 'DM Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
-  padding: 0 24px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.prova-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px;
+  margin-bottom: 10px;
+}
+.prova-card:last-child { margin-bottom: 0; }
+.prova-cliente {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.prova-setor {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.prova-resultado {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.prova-resultado strong { color: var(--text); font-weight: 600; }
+
+/* ── DIFERENCIAL ── */
+.diferencial {
+  margin: 0 24px 40px;
   opacity: 0;
-  transform: translateY(12px);
-  transition: all 0.5s ease;
+  transform: translateY(16px);
+  transition: all 0.6s ease;
 }
-.sec-label.vis { opacity: 1; transform: translateY(0); }
+.diferencial.vis { opacity: 1; transform: translateY(0); }
 
-/* LINKS */
-.links {
+.dif-item {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 0 24px;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.dif-item:last-child { border-bottom: none; }
+.dif-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 20px;
+  line-height: 1.6;
+}
+.dif-content {}
+.dif-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+.dif-desc {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted);
 }
 
-.lnk {
+/* ── CTA FINAL ── */
+.cta-final {
+  padding: 0 24px;
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease;
+}
+.cta-final.vis { opacity: 1; transform: translateY(0); }
+
+.cta-final-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 20px;
+  padding: 20px 20px;
+  background: var(--accent);
   text-decoration: none;
-  border: 1px solid var(--border);
+  margin-bottom: 10px;
+  transition: background 0.25s;
+  width: 100%;
+}
+.cta-final-btn:hover { background: var(--accent2); }
+.cta-final-btn:hover .cta-arrow { transform: translateX(4px); }
+
+.cta-sec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
   background: var(--surface);
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.25s, background 0.25s;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: border-color 0.25s;
+  width: 100%;
 }
-.lnk.vis { opacity: 1; transform: translateY(0); }
-.lnk::after {
-  content: '';
-  position: absolute;
-  left: 0; top: 0;
-  width: 3px;
-  height: 0;
-  background: var(--accent);
-  transition: height 0.3s ease;
-}
-.lnk:hover::after { height: 100%; }
-.lnk:hover {
-  border-color: rgba(255,77,46,0.25);
-  background: rgba(255,77,46,0.04);
-}
+.cta-sec:hover { border-color: rgba(255,77,46,0.3); }
+.cta-sec:hover .cta-arrow { transform: translateX(4px); color: var(--accent); }
 
-.lnk.cta {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-.lnk.cta::after { background: rgba(255,255,255,0.2); }
-.lnk.cta:hover { background: var(--accent2); border-color: var(--accent2); }
-
-.lnk-left { display: flex; flex-direction: column; gap: 2px; }
-.lnk-tag {
+.cta-left { display: flex; flex-direction: column; gap: 2px; }
+.cta-tag {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
-  font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(255,255,255,0.5);
 }
-.lnk.cta .lnk-tag { color: rgba(255,255,255,0.6); }
-
-.lnk-name {
+.cta-sec .cta-tag { color: var(--muted); }
+.cta-name {
   font-family: 'Syne', sans-serif;
   font-size: 15px;
   font-weight: 700;
+  color: var(--white);
   letter-spacing: -0.01em;
-  color: var(--text);
 }
-.lnk.cta .lnk-name { color: var(--white); }
-
-.lnk-arrow {
+.cta-sec .cta-name { color: var(--text); font-size: 14px; }
+.cta-arrow {
   font-size: 16px;
-  color: var(--muted);
-  transition: transform 0.25s;
+  color: rgba(255,255,255,0.7);
+  transition: transform 0.25s, color 0.25s;
+  flex-shrink: 0;
 }
-.lnk.cta .lnk-arrow { color: rgba(255,255,255,0.8); }
-.lnk:hover .lnk-arrow { transform: translateX(4px); color: var(--accent); }
-.lnk.cta:hover .lnk-arrow { color: var(--white); }
 
-/* FOOTER */
+.cta-micronote {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 24px;
+}
+.cta-micronote span { color: var(--green); }
+
+/* ── FOOTER ── */
 .footer {
-  padding: 40px 24px 48px;
+  padding: 24px 24px 48px;
+  border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -355,11 +414,11 @@ body::before {
 .footer.vis { opacity: 1; transform: translateY(0); }
 .footer-brand {
   font-family: 'Syne', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(237,236,240,0.12);
+  color: rgba(237,236,240,0.15);
 }
 .footer-since {
   font-family: 'DM Mono', monospace;
@@ -368,154 +427,188 @@ body::before {
   letter-spacing: 0.1em;
 }
 
-/* SPACER */
 .gap-sm { height: 16px; }
-.gap-md { height: 32px; }
-.gap-lg { height: 48px; }
+.gap-md { height: 28px; }
 
-/* ANIMATIONS */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 </style>
 </head>
 <body>
 
-<div class="bg-glow"></div>
-
-<!-- HEADER -->
-<div class="header">
-  <span class="header-handle">@luizantonioneto</span>
-  <span class="header-badge">Manaus · AM</span>
-</div>
-
-<!-- HERO -->
+<!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-role" style="margin-top: 8px;">Luiz Antônio · Co-fundador</div>
+  <div class="hero-kicker">Paleta Marketing · Manaus, AM</div>
 
-  <p class="hero-statement">
-    O marketing que o <span>empresário amazonense</span> precisa.
+  <h1 class="hero-headline">
+    Seu negócio vende menos<br>do que <span>deveria</span>.<br>A gente resolve isso.
+  </h1>
+
+  <p class="hero-sub">
+    Somos a agência que conecta <strong>marketing, atendimento e comercial</strong> numa estrutura que gera resultado previsível — não só presença digital.
   </p>
 
-  <p class="hero-desc">
-    Somos a agência que conecta marketing a resultado comercial — com método, processo e responsabilidade sobre crescimento.
-  </p>
+  <a href="https://wa.me/5592982410613?text=Olá+Luiz%2C+vim+pelo+link+da+bio+e+quero+entender+como+a+Paleta+pode+ajudar+minha+empresa" target="_blank" class="cta-hero">
+    <div class="cta-hero-left">
+      <span class="cta-hero-tag">Gratuito · 30 minutos · Sem enrolação</span>
+      <span class="cta-hero-name">Quero uma reunião diagnóstico</span>
+    </div>
+    <span class="cta-arrow">→</span>
+  </a>
 
-  <div class="tags">
-    <span class="tag">Food Service</span>
-    <span class="tag">Serviços</span>
-    <span class="tag">Construção</span>
-    <span class="tag">Saúde</span>
-    <span class="tag">Educação</span>
-    <span class="tag">Hotelaria</span>
-    <span class="tag">Jurídico</span>
-    <span class="tag">Varejo</span>
-    <span class="tag">Indústria</span>
-    <span class="tag">Tecnologia</span>
-  </div>
+  <div class="cta-micro"><span>●</span> Respondemos em até 2h no horário comercial</div>
 </section>
 
-<!-- NUMBERS -->
-<div class="numbers" id="n1">
-  <div class="num-item">
-    <span class="num-val">4<span>+</span></span>
-    <span class="num-label">Anos de operação</span>
+<!-- ── DORES ── -->
+<div class="dores" id="d1">
+  <div class="dores-title">Você se identifica com algum desses cenários?</div>
+
+  <div class="dor-item">
+    <span class="dor-icon">—</span>
+    <span class="dor-text">Investe em marketing mas <strong>não sabe o que gerou resultado</strong> no final do mês</span>
   </div>
-  <div class="num-item">
-    <span class="num-val">10</span>
-    <span class="num-label">Setores atendidos</span>
+  <div class="dor-item">
+    <span class="dor-icon">—</span>
+    <span class="dor-text">Sua equipe comercial trabalha no improviso — <strong>cada atendimento é diferente</strong></span>
   </div>
-  <div class="num-item">
-    <span class="num-val">7</span>
-    <span class="num-label">Etapas do método</span>
+  <div class="dor-item">
+    <span class="dor-icon">—</span>
+    <span class="dor-text">Tem presença digital mas ela <strong>não gera leads qualificados</strong></span>
   </div>
-  <div class="num-item">
-    <span class="num-val">2<span>x</span></span>
-    <span class="num-label">Divisões da Paleta</span>
+  <div class="dor-item">
+    <span class="dor-icon">—</span>
+    <span class="dor-text">O crescimento depende de você — <strong>quando sai da operação, as vendas caem</strong></span>
   </div>
 </div>
 
-<div class="gap-lg"></div>
-
-<!-- QUOTE -->
-<div class="quote-block" id="q1">
-  <p class="quote-text">
-    Marketing sem <strong>estrutura comercial</strong> não gera resultado. Gera apenas presença.
+<!-- ── AUTORIDADE ── -->
+<div class="autoridade" id="a1">
+  <div class="aut-who">Luiz Antônio · Co-fundador</div>
+  <p class="aut-text">
+    4 anos estruturando marketing comercial para empresas de Manaus e região. Não vendemos posts — vendemos crescimento com processo.
   </p>
+  <div class="aut-stats">
+    <div class="aut-stat">
+      <span class="aut-val">4<span>+</span></span>
+      <span class="aut-label">Anos</span>
+    </div>
+    <div class="aut-stat">
+      <span class="aut-val">10</span>
+      <span class="aut-label">Setores</span>
+    </div>
+    <div class="aut-stat">
+      <span class="aut-val">7</span>
+      <span class="aut-label">Etapas</span>
+    </div>
+  </div>
 </div>
 
-<div class="gap-lg"></div>
+<!-- ── PROVAS ── -->
+<div class="provas" id="p1">
+  <div class="sec-label">Quem já estruturou com a gente</div>
 
-<!-- LINKS -->
-<div class="sec-label" id="sl1">Próximos passos</div>
+  <div class="prova-card">
+    <div class="prova-cliente">Construtora Arruda</div>
+    <div class="prova-setor">Incorporação Imobiliária · Manaus</div>
+    <p class="prova-resultado">Estruturação completa do setor comercial e 2 lançamentos imobiliários com estratégia de marketing integrada — da geração de leads até o fechamento. Produção de conteúdo com foco em <strong>qualificação de compradores</strong>, campanhas segmentadas por perfil de renda e gestão de relacionamento com prospects ao longo do ciclo de venda.</p>
+  </div>
 
-<div class="links">
-  <a href="https://wa.me/5592982410613?text=Olá+Luiz%2C+quero+fazer+meu+diagnóstico+gratuito" target="_blank" class="lnk cta" id="l1">
-    <div class="lnk-left">
-      <span class="lnk-tag">Gratuito · Sem compromisso</span>
-      <span class="lnk-name">Diagnóstico do seu marketing</span>
+  <div class="prova-card">
+    <div class="prova-cliente">Loppiano Pizza</div>
+    <div class="prova-setor">Food Service · Manaus</div>
+    <p class="prova-resultado">Estratégia de fidelização com <strong>recorde de faturamento e recorde de pedidos</strong> em período de campanha. Criação de campanhas sazonais (Dia dos Namorados, Dia das Mães, aniversário da marca), gestão de cardápio digital, nutrição de base de clientes via WhatsApp e posicionamento de marca para recompra.</p>
+  </div>
+
+  <div class="prova-card">
+    <div class="prova-cliente">Hospital das Malas</div>
+    <div class="prova-setor">Varejo Especializado · Manaus</div>
+    <p class="prova-resultado"><strong>Crescimento de faturamento</strong> com estratégias de atração de novos clientes via tráfego pago e orgânico. Estruturação de funil de vendas para o varejo, produção de conteúdo para geração de demanda, campanhas de reativação de base e posicionamento digital como referência no segmento.</p>
+  </div>
+</div>
+
+<!-- ── DIFERENCIAL ── -->
+<div class="diferencial" id="df1">
+  <div class="sec-label" style="padding: 0; margin-bottom: 16px;">O que fazemos diferente</div>
+
+  <div class="dif-item">
+    <span class="dif-num">01</span>
+    <div class="dif-content">
+      <div class="dif-title">Diagnóstico antes de qualquer ação</div>
+      <div class="dif-desc">Mapeamos seu cenário, concorrentes e gargalos antes de propor qualquer solução.</div>
     </div>
-    <span class="lnk-arrow">→</span>
+  </div>
+  <div class="dif-item">
+    <span class="dif-num">02</span>
+    <div class="dif-content">
+      <div class="dif-title">Marketing conectado ao comercial</div>
+      <div class="dif-desc">Cada ação tem função no funil de vendas. Nada existe só por estética.</div>
+    </div>
+  </div>
+  <div class="dif-item">
+    <span class="dif-num">03</span>
+    <div class="dif-content">
+      <div class="dif-title">Processo, CRM e treinamento</div>
+      <div class="dif-desc">Implementamos ferramentas e treinamos sua equipe para que o sistema funcione sem depender de você.</div>
+    </div>
+  </div>
+  <div class="dif-item">
+    <span class="dif-num">04</span>
+    <div class="dif-content">
+      <div class="dif-title">Relatórios com números reais</div>
+      <div class="dif-desc">CAC, ROI, LTV, ticket médio. Você sabe exatamente o que está funcionando.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CTA FINAL ── -->
+<div class="cta-final" id="cf1">
+  <div class="sec-label" style="padding: 0; margin-bottom: 16px;">Próximo passo</div>
+
+  <a href="https://wa.me/5592982410613?text=Olá+Luiz%2C+vim+pelo+link+da+bio+e+quero+entender+como+a+Paleta+pode+ajudar+minha+empresa" target="_blank" class="cta-final-btn">
+    <div class="cta-left">
+      <span class="cta-tag">Gratuito · 30 minutos</span>
+      <span class="cta-name">Quero uma reunião diagnóstico</span>
+    </div>
+    <span class="cta-arrow">→</span>
   </a>
 
-  <a href="https://www.instagram.com/paletamarketing" target="_blank" class="lnk" id="l2">
-    <div class="lnk-left">
-      <span class="lnk-tag">Instagram</span>
-      <span class="lnk-name">@paletamarketing</span>
+  <a href="https://www.instagram.com/paletamarketing" target="_blank" class="cta-sec">
+    <div class="cta-left">
+      <span class="cta-tag">Instagram</span>
+      <span class="cta-name">@paletamarketing</span>
     </div>
-    <span class="lnk-arrow">→</span>
+    <span class="cta-arrow">→</span>
   </a>
 
-  <a href="https://www.instagram.com/luizantonioneto" target="_blank" class="lnk" id="l3">
-    <div class="lnk-left">
-      <span class="lnk-tag">Conteúdo pessoal</span>
-      <span class="lnk-name">@luizantonioneto</span>
+  <a href="https://www.instagram.com/luizantonioneto" target="_blank" class="cta-sec">
+    <div class="cta-left">
+      <span class="cta-tag">Conteúdo pessoal</span>
+      <span class="cta-name">@luizantonioneto</span>
     </div>
-    <span class="lnk-arrow">→</span>
+    <span class="cta-arrow">→</span>
   </a>
 </div>
 
-<div class="gap-lg"></div>
+<div class="cta-micronote"><span>●</span> Respondemos em até 2h no horário comercial</div>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ── -->
 <div class="footer" id="ft">
   <span class="footer-brand">Grupo Paleta</span>
   <span class="footer-since">Desde 2020 · Manaus</span>
 </div>
 
 <script>
-const watch = [
-  { id: 'n1', delay: 0 },
-  { id: 'q1', delay: 100 },
-  { id: 'sl1', delay: 0 },
-  { id: 'l1', delay: 0 },
-  { id: 'l2', delay: 100 },
-  { id: 'l3', delay: 200 },
-  { id: 'ft', delay: 0 },
-];
-
+const watch = ['d1','a1','p1','df1','cf1','ft'];
 const io = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const cfg = watch.find(w => w.id === entry.target.id);
-    setTimeout(() => entry.target.classList.add('vis'), cfg?.delay || 0);
-    io.unobserve(entry.target);
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('vis');
+    io.unobserve(e.target);
   });
-}, { threshold: 0.1 });
-
-watch.forEach(({ id }) => {
-  const el = document.getElementById(id);
-  if (el) io.observe(el);
-});
+}, { threshold: 0.08 });
+watch.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
 </script>
 </body>
 </html>
