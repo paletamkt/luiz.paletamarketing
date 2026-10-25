@@ -2,613 +2,497 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Paleta Marketing — Manaus</title>
+<meta name="description" content="Agência que conecta marketing, atendimento e comercial numa estrutura que gera resultado previsível. Manaus, AM.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #111013;
-  --surface: #1A191D;
-  --border: rgba(255,255,255,0.07);
-  --text: #EDECF0;
-  --muted: #6B6870;
-  --accent: #FF4D2E;
-  --accent2: #FF7A5C;
-  --white: #FFFFFF;
-  --green: #22C55E;
+  --color-bone-white: #fffdf9;
+  --color-obsidian: #101010;
+  --color-graphite-veil: #495764;
+  --color-ash-border: #403f3f;
+  --color-fog-blue: #6f879c;
+  --color-accent: #ff4d2e;
+  --color-green: #22c55e;
+
+  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --gutter: 16px;
+  --section-gap: 80px;
+  --ease: cubic-bezier(0.52, 0.01, 0, 1);
+
+  color-scheme: dark;
+}
+@media (min-width: 900px) {
+  :root { --gutter: 40px; --section-gap: 128px; }
 }
 
-html, body { min-height: 100%; background: var(--bg); overscroll-behavior-y: none; }
-
+html, body {
+  min-height: 100%;
+  background: var(--color-obsidian);
+  overscroll-behavior-y: none;
+}
 body {
-  font-family: 'Manrope', sans-serif;
+  font-family: var(--font);
   font-weight: 400;
-  color: var(--text);
-  max-width: 430px;
-  margin: 0 auto;
-  min-height: 100vh;
+  font-feature-settings: "ss01" on;
+  color: var(--color-bone-white);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+strong { font-weight: 500; color: var(--color-accent); }
+.accent { color: var(--color-accent); }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23f)' opacity='0.05'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9998;
+.wrap {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
 }
 
-/* ── HERO ── */
-.hero {
-  padding: 40px 24px 0;
-  position: relative;
-  z-index: 10;
-}
+/* ── Tipos ── */
+.h-lg { font-size: clamp(40px, 7vw, 64px); line-height: 1.08; letter-spacing: -0.02em; }
+.h-md { font-size: clamp(26px, 3.6vw, 36px); line-height: 1.2; letter-spacing: -0.01em; }
+.h-sm { font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; }
+.body { font-size: 18px; line-height: 1.55; }
+.eyebrow { font-size: 14px; line-height: 1.2; letter-spacing: 0.02em; text-transform: uppercase; }
+.label { font-size: 15px; line-height: 1.2; color: var(--color-fog-blue); }
+.eyebrow.label { color: var(--color-accent); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-green); flex-shrink: 0; display: inline-block; }
 
-.hero-kicker {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.1s forwards;
+/* ── Nav ── */
+.nav { position: relative; z-index: 5; }
+.nav .wrap {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding-top: 20px; padding-bottom: 20px;
 }
-.hero-kicker::before {
-  content: '';
-  width: 20px; height: 1px;
-  background: var(--accent);
-  flex-shrink: 0;
+.wordmark { font-size: 15px; letter-spacing: 0.02em; text-transform: uppercase; }
+.nav-links { display: none; gap: 32px; }
+.nav-links a {
+  font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase;
+  transition: color 0.5s var(--ease);
 }
+.nav-links a:hover { color: var(--color-fog-blue); }
+.btn-outline {
+  display: inline-block; border: 1px solid var(--color-bone-white); border-radius: 5px;
+  padding: 9px 15px; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase;
+  transition: background-color 0.5s var(--ease), color 0.5s var(--ease);
+}
+.btn-outline:hover { background: var(--color-bone-white); color: var(--color-obsidian); }
+@media (min-width: 900px) { .nav-links { display: flex; } }
 
-.hero-headline {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(26px, 7.5vw, 34px);
-  font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  margin-bottom: 20px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease 0.2s forwards;
+/* ── Botões ── */
+.btn-bone {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  width: 100%; max-width: 440px; padding: 20px 24px;
+  background: var(--color-bone-white); color: var(--color-obsidian);
+  transition: background-color 0.5s var(--ease);
 }
-.hero-headline span { color: var(--accent); }
-
-.hero-sub {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.7;
-  color: var(--muted);
-  margin-bottom: 28px;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.3s forwards;
+.btn-bone:hover { background: var(--color-fog-blue); }
+.btn-bone .tag { display: block; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.7; }
+.btn-bone .name { display: block; font-size: 20px; line-height: 1.2; letter-spacing: -0.01em; }
+.arrow { font-size: 22px; flex-shrink: 0; transition: transform 0.5s var(--ease); }
+.btn-bone:hover .arrow { transform: translateX(4px); }
+.micro, .micronote {
+  display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--color-fog-blue);
 }
-.hero-sub strong { color: var(--text); font-weight: 600; }
+.micro { margin-top: 14px; }
 
-/* CTA HERO */
-.cta-hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 20px;
-  background: var(--accent);
-  text-decoration: none;
-  margin-bottom: 12px;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.4s forwards;
-  transition: background 0.25s;
-  position: relative;
+/* ── Hero ── */
+.hero { padding-top: 48px; padding-bottom: 88px; }
+.hero-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+.hero h1 {
+  font-size: clamp(40px, 7vw, 92px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  max-width: 16ch;
+}
+.hero .line { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.hero .line > span { display: inline-block; }
+.h1-sub {
+  display: block; margin-top: 24px;
+  font-size: clamp(20px, 2.6vw, 30px); line-height: 1.3; letter-spacing: -0.01em;
+  color: var(--color-fog-blue);
+}
+.hero .lead { max-width: 440px; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5; }
+
+.js .hero .line > span { transform: translateY(110%); transition: transform 1s var(--ease); }
+.js.ready .hero .line > span { transform: none; }
+.js.ready .hero .line:nth-child(2) > span { transition-delay: 0.12s; }
+.js .hero .h1-sub, .js .hero .lead, .js .hero .hero-cta { opacity: 0; transform: translateY(16px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.js.ready .hero .h1-sub { opacity: 1; transform: none; transition-delay: 0.35s; }
+.js.ready .hero .lead { opacity: 1; transform: none; transition-delay: 0.5s; }
+.js.ready .hero .hero-cta { opacity: 1; transform: none; transition-delay: 0.65s; }
+
+/* ── Faixa animada ── */
+.marquee {
+  border-top: 1px solid var(--color-ash-border);
+  border-bottom: 1px solid var(--color-ash-border);
   overflow: hidden;
+  padding: 22px 0;
 }
-.cta-hero:hover { background: var(--accent2); }
-.cta-hero-left { display: flex; flex-direction: column; gap: 2px; }
-.cta-hero-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
+.marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+.marquee-group { display: flex; align-items: center; flex-shrink: 0; }
+.marquee-group span {
+  font-size: clamp(28px, 4vw, 48px); line-height: 1; letter-spacing: -0.02em;
+  white-space: nowrap; padding: 0 28px;
 }
-.cta-hero-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: -0.01em;
-}
-.cta-arrow {
-  font-size: 18px;
-  color: var(--white);
-  transition: transform 0.25s;
-}
-.cta-hero:hover .cta-arrow { transform: translateX(4px); }
+.marquee-group i { width: 10px; height: 10px; background: var(--color-accent); display: inline-block; flex-shrink: 0; }
+@keyframes marquee { to { transform: translateX(-50%); } }
 
-.cta-micro {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-  text-align: center;
-  margin-bottom: 40px;
-  opacity: 0;
-  animation: fadeUp 0.4s ease 0.5s forwards;
+/* ── Dores: título fixo, afirmações acendem ao rolar ── */
+.pains-section { padding: var(--section-gap) 0; }
+.pains-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+.pains-head { display: flex; flex-direction: column; gap: 20px; }
+.pains { display: flex; flex-direction: column; gap: 48px; }
+.pain { display: flex; gap: 20px; opacity: 0.25; transition: opacity 0.6s var(--ease); }
+.pain.is-active { opacity: 1; }
+.pain-n { font-size: 15px; color: var(--color-accent); padding-top: 10px; flex-shrink: 0; }
+.pain p { font-size: clamp(22px, 2.6vw, 34px); line-height: 1.25; letter-spacing: -0.01em; }
+@media (min-width: 900px) {
+  .pains-grid { grid-template-columns: 1fr 1.25fr; gap: 80px; align-items: start; }
+  .pains-head { position: sticky; top: 120px; }
+  .pains { padding: 20vh 0; }
 }
-.cta-micro span { color: var(--green); }
+@media (max-width: 899px) { .pain { opacity: 1; } }
 
-/* ── DORES ── */
-.dores {
-  padding: 0 24px;
-  margin-bottom: 40px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: all 0.6s ease;
+/* ── Autoridade: faixa grafite com contadores ── */
+.authority { background: var(--color-graphite-veil); padding: var(--section-gap) 0; }
+.authority .eyebrow { color: var(--color-bone-white); margin-bottom: 28px; }
+.statement { font-size: clamp(26px, 4vw, 52px); line-height: 1.15; letter-spacing: -0.02em; max-width: 24ch; }
+.counters {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin-top: 64px; border-top: 1px solid rgba(255, 253, 249, 0.25); padding-top: 32px;
 }
-.dores.vis { opacity: 1; transform: translateY(0); }
+.counter { display: flex; flex-direction: column; gap: 12px; }
+.c-val {
+  font-size: clamp(56px, 11vw, 140px); line-height: 0.95; letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.c-val span { color: var(--color-accent); }
+.c-label { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255, 253, 249, 0.8); }
 
-.dores-title {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 16px;
+/* ── Cases: trilho horizontal ── */
+.cases-section { padding: var(--section-gap) 0; }
+.cases-head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
+.hint { font-size: 14px; color: var(--color-fog-blue); }
+.cases-track {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 0 var(--gutter) 8px; scrollbar-width: none;
 }
-
-.dor-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
+.cases-track::-webkit-scrollbar { display: none; }
+.case-card {
+  flex: 0 0 min(520px, 84vw); scroll-snap-align: start;
+  border: 1px solid var(--color-ash-border); padding: 32px 28px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: background-color 0.5s var(--ease), border-color 0.5s var(--ease);
 }
-.dor-item:last-child { border-bottom: none; }
-.dor-icon {
-  font-size: 14px;
-  flex-shrink: 0;
-  margin-top: 1px;
-  color: var(--accent);
-  font-family: 'DM Mono', monospace;
-}
-.dor-text {
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--text);
-  font-weight: 400;
-}
-.dor-text strong { color: var(--accent); font-weight: 600; }
-
-/* ── AUTORIDADE ── */
-.autoridade {
-  margin: 0 24px 40px;
-  background: var(--surface);
-  border-left: 3px solid var(--accent);
-  padding: 20px 18px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: all 0.6s ease;
-}
-.autoridade.vis { opacity: 1; transform: translateY(0); }
-
-.aut-who {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-.aut-text {
-  font-family: 'Syne', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.45;
-  color: var(--text);
-  letter-spacing: -0.01em;
-  margin-bottom: 14px;
-}
-.aut-stats {
-  display: flex;
-  gap: 20px;
-}
-.aut-stat { display: flex; flex-direction: column; gap: 2px; }
-.aut-val {
-  font-family: 'Syne', sans-serif;
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--white);
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-.aut-val span { color: var(--accent); }
-.aut-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
+.case-card:hover { background: var(--color-graphite-veil); border-color: var(--color-graphite-veil); }
+.case-card .body { color: var(--color-bone-white); }
+.case-card:hover .label { color: var(--color-bone-white); }
+.cases-bar { margin: 24px var(--gutter) 0; height: 2px; background: var(--color-ash-border); }
+.cases-bar span { display: block; height: 100%; background: var(--color-accent); transform-origin: left; transform: scaleX(0.33); transition: transform 0.2s linear; }
+@media (min-width: 900px) {
+  .cases-head { flex-direction: row; align-items: flex-end; justify-content: space-between; }
 }
 
-/* ── PROVAS ── */
-.provas {
-  padding: 0 24px;
-  margin-bottom: 40px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: all 0.6s ease;
+/* ── Diferencial: faixa clara em grade ── */
+.dif-section { background: var(--color-bone-white); color: var(--color-obsidian); padding: var(--section-gap) 0; }
+.dif-section .section-head { margin-bottom: 40px; }
+.dif-section .eyebrow.label { color: var(--color-graphite-veil); }
+.dif-section h2 { color: var(--color-obsidian); }
+.dif-grid { display: grid; grid-template-columns: 1fr; column-gap: 48px; }
+.dif {
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; gap: 12px;
+  padding: 32px 0; border-top: 1px solid rgba(16, 16, 16, 0.15);
 }
-.provas.vis { opacity: 1; transform: translateY(0); }
+.dif:last-child { border-bottom: 1px solid rgba(16, 16, 16, 0.15); }
+.dif::before {
+  content: ''; position: absolute; top: -1px; left: 0; width: 100%; height: 3px;
+  background: var(--color-accent); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.6s var(--ease);
+}
+.dif:hover::before { transform: scaleX(1); }
+.dif-num { font-size: clamp(44px, 5vw, 56px); line-height: 1; letter-spacing: -0.02em; color: var(--color-accent); transition: transform 0.6s var(--ease); }
+.dif:hover .dif-num { transform: translateX(8px); }
+.dif-desc { font-size: 17px; line-height: 1.5; color: var(--color-graphite-veil); max-width: 42ch; }
+@media (min-width: 900px) { .dif-grid { grid-template-columns: 1fr 1fr; } }
 
-.sec-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 16px;
+/* ── CTA final: centralizado, botão que enche ao passar o mouse ── */
+.cta-final { padding: calc(var(--section-gap) * 1.2) 0; text-align: center; }
+.cta-final .wrap { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.cta-title { font-size: clamp(44px, 8vw, 104px); line-height: 1; letter-spacing: -0.03em; max-width: 14ch; }
+.btn-fill {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: inline-flex; align-items: center; gap: 24px;
+  margin-top: 16px; padding: 22px 32px;
+  border: 1px solid var(--color-bone-white); color: var(--color-bone-white);
+  font-size: 18px; letter-spacing: -0.01em;
+  transition: color 0.5s var(--ease);
 }
+.btn-fill::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: var(--color-accent); transform: translateX(-101%);
+  transition: transform 0.6s var(--ease);
+}
+.btn-fill:hover { color: var(--color-obsidian); }
+.btn-fill:hover::before { transform: none; }
+.btn-fill:hover .arrow { transform: translateX(6px); }
+.cta-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
+.link-pill {
+  padding: 12px 20px; border: 1px solid rgba(255, 253, 249, 0.3); font-size: 15px;
+  transition: border-color 0.5s var(--ease);
+}
+.link-pill:hover { border-color: var(--color-bone-white); }
+.micronote { justify-content: center; margin-top: 8px; }
 
-.prova-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 18px;
-  margin-bottom: 10px;
-}
-.prova-card:last-child { margin-bottom: 0; }
-.prova-cliente {
-  font-family: 'Syne', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: -0.01em;
-  margin-bottom: 4px;
-}
-.prova-setor {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-.prova-resultado {
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--muted);
-}
-.prova-resultado strong { color: var(--text); font-weight: 600; }
+/* ── Rodapé ── */
+.footer { border-top: 1px solid var(--color-ash-border); padding: 24px 0 48px; }
+.footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.footer span { font-size: 14px; letter-spacing: 0.02em; color: var(--color-fog-blue); }
 
-/* ── DIFERENCIAL ── */
-.diferencial {
-  margin: 0 24px 40px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: all 0.6s ease;
-}
-.diferencial.vis { opacity: 1; transform: translateY(0); }
+/* ── Revelação ao rolar ── */
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.js .reveal.vis { opacity: 1; transform: none; }
 
-.dif-item {
-  display: flex;
-  gap: 14px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
-  align-items: flex-start;
-}
-.dif-item:last-child { border-bottom: none; }
-.dif-num {
-  font-family: 'Syne', sans-serif;
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--accent);
-  flex-shrink: 0;
-  width: 20px;
-  line-height: 1.6;
-}
-.dif-content {}
-.dif-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 3px;
-  letter-spacing: -0.01em;
-}
-.dif-desc {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--muted);
-}
-
-/* ── CTA FINAL ── */
-.cta-final {
-  padding: 0 24px;
-  margin-bottom: 16px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: all 0.6s ease;
-}
-.cta-final.vis { opacity: 1; transform: translateY(0); }
-
-.cta-final-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 20px;
-  background: var(--accent);
-  text-decoration: none;
-  margin-bottom: 10px;
-  transition: background 0.25s;
-  width: 100%;
-}
-.cta-final-btn:hover { background: var(--accent2); }
-.cta-final-btn:hover .cta-arrow { transform: translateX(4px); }
-
-.cta-sec {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  text-decoration: none;
-  margin-bottom: 8px;
-  transition: border-color 0.25s;
-  width: 100%;
-}
-.cta-sec:hover { border-color: rgba(255,77,46,0.3); }
-.cta-sec:hover .cta-arrow { transform: translateX(4px); color: var(--accent); }
-
-.cta-left { display: flex; flex-direction: column; gap: 2px; }
-.cta-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-}
-.cta-sec .cta-tag { color: var(--muted); }
-.cta-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: -0.01em;
-}
-.cta-sec .cta-name { color: var(--text); font-size: 14px; }
-.cta-arrow {
-  font-size: 16px;
-  color: rgba(255,255,255,0.7);
-  transition: transform 0.25s, color 0.25s;
-  flex-shrink: 0;
-}
-
-.cta-micronote {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 0 24px;
-}
-.cta-micronote span { color: var(--green); }
-
-/* ── FOOTER ── */
-.footer {
-  padding: 24px 24px 48px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: all 0.5s ease;
-}
-.footer.vis { opacity: 1; transform: translateY(0); }
-.footer-brand {
-  font-family: 'Syne', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(237,236,240,0.15);
-}
-.footer-since {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: rgba(237,236,240,0.1);
-  letter-spacing: 0.1em;
-}
-
-.gap-sm { height: 16px; }
-.gap-md { height: 28px; }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .js .hero .line > span, .js .hero .h1-sub, .js .hero .lead, .js .hero .hero-cta,
+  .js .reveal, .pain, .dif::before, .dif-num, .btn-fill::before, .cases-bar span { transition: none; transform: none; opacity: 1; }
 }
 </style>
 </head>
 <body>
 
+<header class="nav">
+  <div class="wrap">
+    <a href="#" class="wordmark">Paleta Marketing</a>
+    <nav class="nav-links" aria-label="Seções">
+      <a href="#dores">Diagnóstico</a>
+      <a href="#metodo">Método</a>
+      <a href="#cases">Cases</a>
+    </nav>
+    <a class="btn-outline" href="https://wa.me/5592982410613?text=Olá+Luiz%2C+vim+pelo+link+da+bio+e+quero+entender+como+a+Paleta+pode+ajudar+minha+empresa" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</header>
+
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-kicker">Paleta Marketing · Manaus, AM</div>
-
-  <h1 class="hero-headline">
-    Seu negócio vende menos<br>do que <span>deveria</span>.<br>A gente resolve isso.
-  </h1>
-
-  <p class="hero-sub">
-    Somos a agência que conecta <strong>marketing, atendimento e comercial</strong> numa estrutura que gera resultado previsível — não só presença digital.
-  </p>
-
-  <a href="https://wa.me/5592982410613?text=Olá+Luiz%2C+vim+pelo+link+da+bio+e+quero+entender+como+a+Paleta+pode+ajudar+minha+empresa" target="_blank" class="cta-hero">
-    <div class="cta-hero-left">
-      <span class="cta-hero-tag">Gratuito · 30 minutos · Sem enrolação</span>
-      <span class="cta-hero-name">Quero uma reunião diagnóstico</span>
+  <div class="wrap hero-copy">
+    <p class="eyebrow accent">Paleta Marketing · Manaus, AM</p>
+    <h1>
+      <span class="line"><span>O resultado vem do <span class="accent">acompanhamento</span></span></span>
+      <span class="line"><span>e dos ajustes constantes.</span></span>
+    </h1>
+    <p class="h1-sub">Como você tem analisado as suas estratégias de marketing?</p>
+    <p class="lead">Somos a agência que conecta <strong>marketing, atendimento e comercial</strong> numa estrutura que gera resultado previsível — não só presença digital.</p>
+    <div class="hero-cta" style="width: 100%;">
+      <a class="btn-bone" href="https://wa.me/5592982410613?text=Olá+Luiz%2C+vim+pelo+link+da+bio+e+quero+entender+como+a+Paleta+pode+ajudar+minha+empresa" target="_blank" rel="noopener">
+        <span>
+          <span class="tag">Gratuito · 30 minutos · Sem enrolação</span>
+          <span class="name">Quero uma reunião diagnóstico</span>
+        </span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <p class="micro"><span class="dot"></span>Respondemos em até 2h no horário comercial</p>
     </div>
-    <span class="cta-arrow">→</span>
-  </a>
-
-  <div class="cta-micro"><span>●</span> Respondemos em até 2h no horário comercial</div>
+  </div>
 </section>
 
-<!-- ── DORES ── -->
-<div class="dores" id="d1">
-  <div class="dores-title">Você se identifica com algum desses cenários?</div>
-
-  <div class="dor-item">
-    <span class="dor-icon">—</span>
-    <span class="dor-text">Investe em marketing mas <strong>não sabe o que gerou resultado</strong> no final do mês</span>
-  </div>
-  <div class="dor-item">
-    <span class="dor-icon">—</span>
-    <span class="dor-text">Sua equipe comercial trabalha no improviso — <strong>cada atendimento é diferente</strong></span>
-  </div>
-  <div class="dor-item">
-    <span class="dor-icon">—</span>
-    <span class="dor-text">Tem presença digital mas ela <strong>não gera leads qualificados</strong></span>
-  </div>
-  <div class="dor-item">
-    <span class="dor-icon">—</span>
-    <span class="dor-text">O crescimento depende de você — <strong>quando sai da operação, as vendas caem</strong></span>
+<!-- ── FAIXA ── -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-group"><span>Restaurantes</span><i></i><span>Construtoras</span><i></i><span>Varejo</span><i></i><span>Acompanhamento semanal</span><i></i><span>Indicadores de venda</span><i></i><span>Processo com CRM</span><i></i></div>
+    <div class="marquee-group"><span>Restaurantes</span><i></i><span>Construtoras</span><i></i><span>Varejo</span><i></i><span>Acompanhamento semanal</span><i></i><span>Indicadores de venda</span><i></i><span>Processo com CRM</span><i></i></div>
   </div>
 </div>
+
+<!-- ── DORES ── -->
+<section class="pains-section" id="dores">
+  <div class="wrap pains-grid">
+    <div class="pains-head">
+      <p class="eyebrow label">Diagnóstico</p>
+      <h2 class="h-lg">Você se identifica com algum desses <span class="accent">cenários</span>?</h2>
+    </div>
+    <ol class="pains">
+      <li class="pain"><span class="pain-n">01</span><p>Investe em marketing mas <strong>não sabe o que gerou resultado</strong> no final do mês</p></li>
+      <li class="pain"><span class="pain-n">02</span><p>Sua equipe comercial trabalha no improviso — <strong>cada atendimento é diferente</strong></p></li>
+      <li class="pain"><span class="pain-n">03</span><p>Tem presença digital mas ela <strong>não gera leads qualificados</strong></p></li>
+      <li class="pain"><span class="pain-n">04</span><p>O crescimento depende de você — <strong>quando sai da operação, as vendas caem</strong></p></li>
+    </ol>
+  </div>
+</section>
 
 <!-- ── AUTORIDADE ── -->
-<div class="autoridade" id="a1">
-  <div class="aut-who">Luiz Antônio · Co-fundador</div>
-  <p class="aut-text">
-    4 anos estruturando marketing comercial para empresas de Manaus e região. Não vendemos posts — vendemos crescimento com processo.
-  </p>
-  <div class="aut-stats">
-    <div class="aut-stat">
-      <span class="aut-val">4<span>+</span></span>
-      <span class="aut-label">Anos</span>
-    </div>
-    <div class="aut-stat">
-      <span class="aut-val">10</span>
-      <span class="aut-label">Setores</span>
-    </div>
-    <div class="aut-stat">
-      <span class="aut-val">7</span>
-      <span class="aut-label">Etapas</span>
+<section class="authority" id="metodo">
+  <div class="wrap">
+    <p class="eyebrow">Luiz Antônio · Co-fundador</p>
+    <p class="statement reveal">4 anos estruturando marketing comercial para empresas de Manaus e região. Não vendemos posts — vendemos crescimento com processo.</p>
+    <div class="counters">
+      <div class="counter"><span class="c-val" data-count="4" data-suffix="+">4<span>+</span></span><span class="c-label">Anos</span></div>
+      <div class="counter"><span class="c-val" data-count="10">10</span><span class="c-label">Setores</span></div>
+      <div class="counter"><span class="c-val" data-count="7">7</span><span class="c-label">Etapas</span></div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ── PROVAS ── -->
-<div class="provas" id="p1">
-  <div class="sec-label">Quem já estruturou com a gente</div>
-
-  <div class="prova-card">
-    <div class="prova-cliente">Construtora Arruda</div>
-    <div class="prova-setor">Incorporação Imobiliária · Manaus</div>
-    <p class="prova-resultado">Estruturação completa do setor comercial e 2 lançamentos imobiliários com estratégia de marketing integrada — da geração de leads até o fechamento. Produção de conteúdo com foco em <strong>qualificação de compradores</strong>, campanhas segmentadas por perfil de renda e gestão de relacionamento com prospects ao longo do ciclo de venda.</p>
+<!-- ── CASES ── -->
+<section class="cases-section" id="cases">
+  <div class="wrap cases-head">
+    <div>
+      <p class="eyebrow label" style="margin-bottom: 16px;">Cases</p>
+      <h2 class="h-lg">Quem já <span class="accent">estruturou</span> com a gente</h2>
+    </div>
+    <p class="hint">Arraste para o lado →</p>
   </div>
 
-  <div class="prova-card">
-    <div class="prova-cliente">Loppiano Pizza</div>
-    <div class="prova-setor">Food Service · Manaus</div>
-    <p class="prova-resultado">Estratégia de fidelização com <strong>recorde de faturamento e recorde de pedidos</strong> em período de campanha. Criação de campanhas sazonais (Dia dos Namorados, Dia das Mães, aniversário da marca), gestão de cardápio digital, nutrição de base de clientes via WhatsApp e posicionamento de marca para recompra.</p>
+  <div class="cases-track" tabindex="0" aria-label="Cases de clientes">
+    <article class="case-card">
+      <p class="label">Incorporação Imobiliária · Manaus</p>
+      <h3 class="h-md">Construtora Arruda</h3>
+      <p class="body">Estruturação completa do setor comercial e 2 lançamentos imobiliários com estratégia de marketing integrada — da geração de leads até o fechamento. Produção de conteúdo com foco em <strong>qualificação de compradores</strong>, campanhas segmentadas por perfil de renda e gestão de relacionamento com prospects ao longo do ciclo de venda.</p>
+    </article>
+    <article class="case-card">
+      <p class="label">Food Service · Manaus</p>
+      <h3 class="h-md">Loppiano Pizza</h3>
+      <p class="body">Estratégia de fidelização com <strong>recorde de faturamento e recorde de pedidos</strong> em período de campanha. Criação de campanhas sazonais (Dia dos Namorados, Dia das Mães, aniversário da marca), gestão de cardápio digital, nutrição de base de clientes via WhatsApp e posicionamento de marca para recompra.</p>
+    </article>
+    <article class="case-card">
+      <p class="label">Varejo Especializado · Manaus</p>
+      <h3 class="h-md">Hospital das Malas</h3>
+      <p class="body"><strong>Crescimento de faturamento</strong> com estratégias de atração de novos clientes via tráfego pago e orgânico. Estruturação de funil de vendas para o varejo, produção de conteúdo para geração de demanda, campanhas de reativação de base e posicionamento digital como referência no segmento.</p>
+    </article>
   </div>
-
-  <div class="prova-card">
-    <div class="prova-cliente">Hospital das Malas</div>
-    <div class="prova-setor">Varejo Especializado · Manaus</div>
-    <p class="prova-resultado"><strong>Crescimento de faturamento</strong> com estratégias de atração de novos clientes via tráfego pago e orgânico. Estruturação de funil de vendas para o varejo, produção de conteúdo para geração de demanda, campanhas de reativação de base e posicionamento digital como referência no segmento.</p>
-  </div>
-</div>
+  <div class="cases-bar" aria-hidden="true"><span></span></div>
+</section>
 
 <!-- ── DIFERENCIAL ── -->
-<div class="diferencial" id="df1">
-  <div class="sec-label" style="padding: 0; margin-bottom: 16px;">O que fazemos diferente</div>
-
-  <div class="dif-item">
-    <span class="dif-num">01</span>
-    <div class="dif-content">
-      <div class="dif-title">Diagnóstico antes de qualquer ação</div>
-      <div class="dif-desc">Mapeamos seu cenário, concorrentes e gargalos antes de propor qualquer solução.</div>
+<section class="dif-section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow label" style="margin-bottom: 16px;">O que fazemos diferente</p>
+    </div>
+    <div class="dif-grid">
+      <div class="dif">
+        <span class="dif-num">01</span>
+        <h3 class="h-sm">Diagnóstico antes de qualquer ação</h3>
+        <p class="dif-desc">Mapeamos seu cenário, concorrentes e gargalos antes de propor qualquer solução.</p>
+      </div>
+      <div class="dif">
+        <span class="dif-num">02</span>
+        <h3 class="h-sm">Marketing conectado ao comercial</h3>
+        <p class="dif-desc">Cada ação tem função no funil de vendas. Nada existe só por estética.</p>
+      </div>
+      <div class="dif">
+        <span class="dif-num">03</span>
+        <h3 class="h-sm">Processo, CRM e treinamento</h3>
+        <p class="dif-desc">Implementamos ferramentas e treinamos sua equipe para que o sistema funcione sem depender de você.</p>
+      </div>
+      <div class="dif">
+        <span class="dif-num">04</span>
+        <h3 class="h-sm">Relatórios com números reais</h3>
+        <p class="dif-desc">CAC, ROI, LTV, ticket médio. Você sabe exatamente o que está funcionando.</p>
+      </div>
     </div>
   </div>
-  <div class="dif-item">
-    <span class="dif-num">02</span>
-    <div class="dif-content">
-      <div class="dif-title">Marketing conectado ao comercial</div>
-      <div class="dif-desc">Cada ação tem função no funil de vendas. Nada existe só por estética.</div>
-    </div>
-  </div>
-  <div class="dif-item">
-    <span class="dif-num">03</span>
-    <div class="dif-content">
-      <div class="dif-title">Processo, CRM e treinamento</div>
-      <div class="dif-desc">Implementamos ferramentas e treinamos sua equipe para que o sistema funcione sem depender de você.</div>
-    </div>
-  </div>
-  <div class="dif-item">
-    <span class="dif-num">04</span>
-    <div class="dif-content">
-      <div class="dif-title">Relatórios com números reais</div>
-      <div class="dif-desc">CAC, ROI, LTV, ticket médio. Você sabe exatamente o que está funcionando.</div>
-    </div>
-  </div>
-</div>
+</section>
 
 <!-- ── CTA FINAL ── -->
-<div class="cta-final" id="cf1">
-  <div class="sec-label" style="padding: 0; margin-bottom: 16px;">Próximo passo</div>
-
-  <a href="https://wa.me/5592982410613?text=Olá+Luiz%2C+vim+pelo+link+da+bio+e+quero+entender+como+a+Paleta+pode+ajudar+minha+empresa" target="_blank" class="cta-final-btn">
-    <div class="cta-left">
-      <span class="cta-tag">Gratuito · 30 minutos</span>
-      <span class="cta-name">Quero uma reunião diagnóstico</span>
+<section class="cta-final">
+  <div class="wrap">
+    <p class="eyebrow label reveal">Próximo passo</p>
+    <h2 class="cta-title reveal">Vamos entender o seu <span class="accent">cenário</span>?</h2>
+    <a class="btn-fill reveal" href="https://wa.me/5592982410613?text=Olá+Luiz%2C+vim+pelo+link+da+bio+e+quero+entender+como+a+Paleta+pode+ajudar+minha+empresa" target="_blank" rel="noopener">
+      Quero uma reunião diagnóstico <span class="arrow" aria-hidden="true">→</span>
+    </a>
+    <div class="cta-links reveal">
+      <a class="link-pill" href="https://www.instagram.com/paletamarketing" target="_blank" rel="noopener">@paletamarketing</a>
+      <a class="link-pill" href="https://www.instagram.com/luizantonioneto" target="_blank" rel="noopener">@luizantonioneto</a>
     </div>
-    <span class="cta-arrow">→</span>
-  </a>
-
-  <a href="https://www.instagram.com/paletamarketing" target="_blank" class="cta-sec">
-    <div class="cta-left">
-      <span class="cta-tag">Instagram</span>
-      <span class="cta-name">@paletamarketing</span>
-    </div>
-    <span class="cta-arrow">→</span>
-  </a>
-
-  <a href="https://www.instagram.com/luizantonioneto" target="_blank" class="cta-sec">
-    <div class="cta-left">
-      <span class="cta-tag">Conteúdo pessoal</span>
-      <span class="cta-name">@luizantonioneto</span>
-    </div>
-    <span class="cta-arrow">→</span>
-  </a>
-</div>
-
-<div class="cta-micronote"><span>●</span> Respondemos em até 2h no horário comercial</div>
+    <p class="micronote reveal"><span class="dot"></span>Respondemos em até 2h no horário comercial</p>
+  </div>
+</section>
 
 <!-- ── FOOTER ── -->
-<div class="footer" id="ft">
-  <span class="footer-brand">Grupo Paleta</span>
-  <span class="footer-since">Desde 2020 · Manaus</span>
-</div>
+<footer class="footer">
+  <div class="wrap">
+    <span>Grupo Paleta</span>
+    <span>Desde 2020 · Manaus</span>
+  </div>
+</footer>
 
 <script>
-const watch = ['d1','a1','p1','df1','cf1','ft'];
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('vis');
-    io.unobserve(e.target);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Entrada do hero (letras sobem em sequência)
+requestAnimationFrame(() => document.documentElement.classList.add('ready'));
+
+// Revelação genérica ao rolar
+const revealIO = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('vis');
+    revealIO.unobserve(entry.target);
   });
-}, { threshold: 0.08 });
-watch.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach((el) => revealIO.observe(el));
+
+// Dores: a afirmação no centro da tela fica acesa
+const pains = document.querySelectorAll('.pain');
+if (window.innerWidth >= 900) {
+  const painIO = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      pains.forEach((p) => p.classList.remove('is-active'));
+      entry.target.classList.add('is-active');
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  pains.forEach((p) => painIO.observe(p));
+} else {
+  pains.forEach((p) => p.classList.add('is-active'));
+}
+
+// Contadores da autoridade
+if (!reduceMotion) {
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const end = Number(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / 1400, 1);
+        const value = Math.round(end * (1 - Math.pow(1 - p, 3)));
+        el.innerHTML = value + (suffix ? '<span>' + suffix + '</span>' : '');
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      counterIO.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach((el) => counterIO.observe(el));
+}
+
+// Cases: barra de progresso acompanha o trilho
+const track = document.querySelector('.cases-track');
+const bar = document.querySelector('.cases-bar span');
+const updateBar = () => {
+  const max = track.scrollWidth - track.clientWidth;
+  const ratio = max > 0 ? track.scrollLeft / max : 1;
+  bar.style.transform = 'scaleX(' + (0.33 + ratio * 0.67) + ')';
+};
+track.addEventListener('scroll', updateBar, { passive: true });
+updateBar();
 </script>
 </body>
 </html>

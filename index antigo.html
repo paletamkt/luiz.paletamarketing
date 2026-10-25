@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Paleta Marketing — Manaus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #111013;
+  --surface: #1A191D;
+  --border: rgba(255,255,255,0.07);
+  --text: #EDECF0;
+  --muted: #6B6870;
+  --accent: #FF4D2E;
+  --accent2: #FF7A5C;
+  --white: #FFFFFF;
+  --green: #22C55E;
+}
+
+html, body { min-height: 100%; background: var(--bg); overscroll-behavior-y: none; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  color: var(--text);
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23f)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 40px 24px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-kicker {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.1s forwards;
+}
+.hero-kicker::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.hero-headline {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(26px, 7.5vw, 34px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.2s forwards;
+}
+.hero-headline span { color: var(--accent); }
+
+.hero-sub {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.3s forwards;
+}
+.hero-sub strong { color: var(--text); font-weight: 600; }
+
+/* CTA HERO */
+.cta-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  background: var(--accent);
+  text-decoration: none;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.4s forwards;
+  transition: background 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.cta-hero:hover { background: var(--accent2); }
+.cta-hero-left { display: flex; flex-direction: column; gap: 2px; }
+.cta-hero-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+}
+.cta-hero-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+.cta-arrow {
+  font-size: 18px;
+  color: var(--white);
+  transition: transform 0.25s;
+}
+.cta-hero:hover .cta-arrow { transform: translateX(4px); }
+
+.cta-micro {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.4s ease 0.5s forwards;
+}
+.cta-micro span { color: var(--green); }
+
+/* ── DORES ── */
+.dores {
+  padding: 0 24px;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease;
+}
+.dores.vis { opacity: 1; transform: translateY(0); }
+
+.dores-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.dor-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.dor-item:last-child { border-bottom: none; }
+.dor-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--accent);
+  font-family: 'DM Mono', monospace;
+}
+.dor-text {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text);
+  font-weight: 400;
+}
+.dor-text strong { color: var(--accent); font-weight: 600; }
+
+/* ── AUTORIDADE ── */
+.autoridade {
+  margin: 0 24px 40px;
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  padding: 20px 18px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease;
+}
+.autoridade.vis { opacity: 1; transform: translateY(0); }
+
+.aut-who {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.aut-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+.aut-stats {
+  display: flex;
+  gap: 20px;
+}
+.aut-stat { display: flex; flex-direction: column; gap: 2px; }
+.aut-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.aut-val span { color: var(--accent); }
+.aut-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── PROVAS ── */
+.provas {
+  padding: 0 24px;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease;
+}
+.provas.vis { opacity: 1; transform: translateY(0); }
+
+.sec-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.prova-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px;
+  margin-bottom: 10px;
+}
+.prova-card:last-child { margin-bottom: 0; }
+.prova-cliente {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.prova-setor {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.prova-resultado {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.prova-resultado strong { color: var(--text); font-weight: 600; }
+
+/* ── DIFERENCIAL ── */
+.diferencial {
+  margin: 0 24px 40px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease;
+}
+.diferencial.vis { opacity: 1; transform: translateY(0); }
+
+.dif-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.dif-item:last-child { border-bottom: none; }
+.dif-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 20px;
+  line-height: 1.6;
+}
+.dif-content {}
+.dif-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+.dif-desc {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* ── CTA FINAL ── */
+.cta-final {
+  padding: 0 24px;
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease;
+}
+.cta-final.vis { opacity: 1; transform: translateY(0); }
+
+.cta-final-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px;
+  background: var(--accent);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: background 0.25s;
+  width: 100%;
+}
+.cta-final-btn:hover { background: var(--accent2); }
+.cta-final-btn:hover .cta-arrow { transform: translateX(4px); }
+
+.cta-sec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: border-color 0.25s;
+  width: 100%;
+}
+.cta-sec:hover { border-color: rgba(255,77,46,0.3); }
+.cta-sec:hover .cta-arrow { transform: translateX(4px); color: var(--accent); }
+
+.cta-left { display: flex; flex-direction: column; gap: 2px; }
+.cta-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.cta-sec .cta-tag { color: var(--muted); }
+.cta-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+.cta-sec .cta-name { color: var(--text); font-size: 14px; }
+.cta-arrow {
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+  transition: transform 0.25s, color 0.25s;
+  flex-shrink: 0;
+}
+
+.cta-micronote {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 24px;
+}
+.cta-micronote span { color: var(--green); }
+
+/* ── FOOTER ── */
+.footer {
+  padding: 24px 24px 48px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.5s ease;
+}
+.footer.vis { opacity: 1; transform: translateY(0); }
+.footer-brand {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(237,236,240,0.15);
+}
+.footer-since {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(237,236,240,0.1);
+  letter-spacing: 0.1em;
+}
+
+.gap-sm { height: 16px; }
+.gap-md { height: 28px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-kicker">Paleta Marketing · Manaus, AM</div>
+
+  <h1 class="hero-headline">
+    Seu negócio vende menos<br>do que <span>deveria</span>.<br>A gente resolve isso.
+  </h1>
+
+  <p class="hero-sub">
+    Somos a agência que conecta <strong>marketing, atendimento e comercial</strong> numa estrutura que gera resultado previsível — não só presença digital.
+  </p>
+
+  <a href="https://wa.me/5592982410613?text=Olá+Luiz%2C+vim+pelo+link+da+bio+e+quero+entender+como+a+Paleta+pode+ajudar+minha+empresa" target="_blank" class="cta-hero">
+    <div class="cta-hero-left">
+      <span class="cta-hero-tag">Gratuito · 30 minutos · Sem enrolação</span>
+      <span class="cta-hero-name">Quero uma reunião diagnóstico</span>
+    </div>
+    <span class="cta-arrow">→</span>
+  </a>
+
+  <div class="cta-micro"><span>●</span> Respondemos em até 2h no horário comercial</div>
+</section>
+
+<!-- ── DORES ── -->
+<div class="dores" id="d1">
+  <div class="dores-title">Você se identifica com algum desses cenários?</div>
+
+  <div class="dor-item">
+    <span class="dor-icon">—</span>
+    <span class="dor-text">Investe em marketing mas <strong>não sabe o que gerou resultado</strong> no final do mês</span>
+  </div>
+  <div class="dor-item">
+    <span class="dor-icon">—</span>
+    <span class="dor-text">Sua equipe comercial trabalha no improviso — <strong>cada atendimento é diferente</strong></span>
+  </div>
+  <div class="dor-item">
+    <span class="dor-icon">—</span>
+    <span class="dor-text">Tem presença digital mas ela <strong>não gera leads qualificados</strong></span>
+  </div>
+  <div class="dor-item">
+    <span class="dor-icon">—</span>
+    <span class="dor-text">O crescimento depende de você — <strong>quando sai da operação, as vendas caem</strong></span>
+  </div>
+</div>
+
+<!-- ── AUTORIDADE ── -->
+<div class="autoridade" id="a1">
+  <div class="aut-who">Luiz Antônio · Co-fundador</div>
+  <p class="aut-text">
+    4 anos estruturando marketing comercial para empresas de Manaus e região. Não vendemos posts — vendemos crescimento com processo.
+  </p>
+  <div class="aut-stats">
+    <div class="aut-stat">
+      <span class="aut-val">4<span>+</span></span>
+      <span class="aut-label">Anos</span>
+    </div>
+    <div class="aut-stat">
+      <span class="aut-val">10</span>
+      <span class="aut-label">Setores</span>
+    </div>
+    <div class="aut-stat">
+      <span class="aut-val">7</span>
+      <span class="aut-label">Etapas</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROVAS ── -->
+<div class="provas" id="p1">
+  <div class="sec-label">Quem já estruturou com a gente</div>
+
+  <div class="prova-card">
+    <div class="prova-cliente">Construtora Arruda</div>
+    <div class="prova-setor">Incorporação Imobiliária · Manaus</div>
+    <p class="prova-resultado">Estruturação completa do setor comercial e 2 lançamentos imobiliários com estratégia de marketing integrada — da geração de leads até o fechamento. Produção de conteúdo com foco em <strong>qualificação de compradores</strong>, campanhas segmentadas por perfil de renda e gestão de relacionamento com prospects ao longo do ciclo de venda.</p>
+  </div>
+
+  <div class="prova-card">
+    <div class="prova-cliente">Loppiano Pizza</div>
+    <div class="prova-setor">Food Service · Manaus</div>
+    <p class="prova-resultado">Estratégia de fidelização com <strong>recorde de faturamento e recorde de pedidos</strong> em período de campanha. Criação de campanhas sazonais (Dia dos Namorados, Dia das Mães, aniversário da marca), gestão de cardápio digital, nutrição de base de clientes via WhatsApp e posicionamento de marca para recompra.</p>
+  </div>
+
+  <div class="prova-card">
+    <div class="prova-cliente">Hospital das Malas</div>
+    <div class="prova-setor">Varejo Especializado · Manaus</div>
+    <p class="prova-resultado"><strong>Crescimento de faturamento</strong> com estratégias de atração de novos clientes via tráfego pago e orgânico. Estruturação de funil de vendas para o varejo, produção de conteúdo para geração de demanda, campanhas de reativação de base e posicionamento digital como referência no segmento.</p>
+  </div>
+</div>
+
+<!-- ── DIFERENCIAL ── -->
+<div class="diferencial" id="df1">
+  <div class="sec-label" style="padding: 0; margin-bottom: 16px;">O que fazemos diferente</div>
+
+  <div class="dif-item">
+    <span class="dif-num">01</span>
+    <div class="dif-content">
+      <div class="dif-title">Diagnóstico antes de qualquer ação</div>
+      <div class="dif-desc">Mapeamos seu cenário, concorrentes e gargalos antes de propor qualquer solução.</div>
+    </div>
+  </div>
+  <div class="dif-item">
+    <span class="dif-num">02</span>
+    <div class="dif-content">
+      <div class="dif-title">Marketing conectado ao comercial</div>
+      <div class="dif-desc">Cada ação tem função no funil de vendas. Nada existe só por estética.</div>
+    </div>
+  </div>
+  <div class="dif-item">
+    <span class="dif-num">03</span>
+    <div class="dif-content">
+      <div class="dif-title">Processo, CRM e treinamento</div>
+      <div class="dif-desc">Implementamos ferramentas e treinamos sua equipe para que o sistema funcione sem depender de você.</div>
+    </div>
+  </div>
+  <div class="dif-item">
+    <span class="dif-num">04</span>
+    <div class="dif-content">
+      <div class="dif-title">Relatórios com números reais</div>
+      <div class="dif-desc">CAC, ROI, LTV, ticket médio. Você sabe exatamente o que está funcionando.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CTA FINAL ── -->
+<div class="cta-final" id="cf1">
+  <div class="sec-label" style="padding: 0; margin-bottom: 16px;">Próximo passo</div>
+
+  <a href="https://wa.me/5592982410613?text=Olá+Luiz%2C+vim+pelo+link+da+bio+e+quero+entender+como+a+Paleta+pode+ajudar+minha+empresa" target="_blank" class="cta-final-btn">
+    <div class="cta-left">
+      <span class="cta-tag">Gratuito · 30 minutos</span>
+      <span class="cta-name">Quero uma reunião diagnóstico</span>
+    </div>
+    <span class="cta-arrow">→</span>
+  </a>
+
+  <a href="https://www.instagram.com/paletamarketing" target="_blank" class="cta-sec">
+    <div class="cta-left">
+      <span class="cta-tag">Instagram</span>
+      <span class="cta-name">@paletamarketing</span>
+    </div>
+    <span class="cta-arrow">→</span>
+  </a>
+
+  <a href="https://www.instagram.com/luizantonioneto" target="_blank" class="cta-sec">
+    <div class="cta-left">
+      <span class="cta-tag">Conteúdo pessoal</span>
+      <span class="cta-name">@luizantonioneto</span>
+    </div>
+    <span class="cta-arrow">→</span>
+  </a>
+</div>
+
+<div class="cta-micronote"><span>●</span> Respondemos em até 2h no horário comercial</div>
+
+<!-- ── FOOTER ── -->
+<div class="footer" id="ft">
+  <span class="footer-brand">Grupo Paleta</span>
+  <span class="footer-since">Desde 2020 · Manaus</span>
+</div>
+
+<script>
+const watch = ['d1','a1','p1','df1','cf1','ft'];
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('vis');
+    io.unobserve(e.target);
+  });
+}, { threshold: 0.08 });
+watch.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+</script>
+</body>
+</html>
